@@ -1,0 +1,13 @@
+.todo-item {
+    display: flex;
+    margin-top: 10px;
+}
+
+.todo-item > li {
+    margin-right: 15px;
+}
+
+.todo-item > input {
+    margin-left: 5px;
+    margin-right: 5px;
+}
