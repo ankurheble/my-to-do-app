@@ -7,7 +7,7 @@ let todos = require("../model/todos");
     Post /todos : store
     Get /todos/:id/edit : edit
     Put /todos/:id : update
-    Delete /todos/:id : delete
+    Delete /todos/:id : destroy
 */
 
 module.exports = {
