@@ -2,7 +2,7 @@
 let express = require("express");
 let path = require("path");
 let methodOverride = require("method-override");
-let todoController = require("./controllers/todoController");
+let todoRouter = require("./routes/todos");
 
 // App initiation
 let app = express();
@@ -32,16 +32,6 @@ app.get("/", function(req, res) {
   });
 });
 
-// List To-Do's
-app.get("/todos", todoController.getTodos);
-
-// Create To-Do's
-app.post("/todos", todoController.postTodos);
-
-// Delete To-Do's
-app.delete("/todos/:id", todoController.deleteTodo);
-
-// Update a specific To-Do
-app.put("/todos/:id", todoController.putTodo);
+app.use("/todos",todoRouter);
 
 app.listen(3000);
