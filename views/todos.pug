@@ -12,20 +12,19 @@ html(lang="en")
 				)
 	body
 		div(class="container")
-			span(class="flex")
-				form(action="/todos",method="POST")
-					input(type="text" name="title" class="form-control")
-					button(type="submit" class="btn btn-primary btn-sm") Add To-Do
+			form(action="/todos",method="POST")
+				input(type="text" name="title" class="form-control")
+				button(type="submit" class="btn btn-primary btn-sm") Add To-Do
 
-				ul(class="list-group")
-					each todo in todos
-						form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
-							input(type="hidden" name="_method" value="PUT")
-							span(class="todo-item")
-								li(class="list-group-item")=todo.title
-								input(type="checkbox" name="checkboxValue" checked=todo.completed)
-								button(type="submit" class="btn btn-primary btn-sm") Update
-						form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
-							input(type="hidden" name="_method" value="DELETE")
-							button(type="submit" class="btn btn-danger btn-sm") Delete
+			ul(class="list-group")
+				each todo in todos
+					form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
+						input(type="hidden" name="_method" value="PUT")
+						span(class="todo-item")
+							li(class="list-group-item")=todo.title
+							input(type="checkbox" name="checkboxValue" checked=todo.completed)
+							button(type="submit" class="btn btn-primary btn-sm") Update
+					form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
+						input(type="hidden" name="_method" value="DELETE")
+						button(type="submit" class="btn btn-danger btn-sm") Delete
 					

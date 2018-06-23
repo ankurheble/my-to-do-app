@@ -2,6 +2,7 @@
 let express = require("express");
 let path = require("path");
 let methodOverride = require("method-override");
+let todoController = require("./controllers/todoController");
 
 // App initiation
 let app = express();
@@ -24,35 +25,6 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 
-// In-Memory DB
-let todos = [
-  {
-    id: Math.floor(Math.random() * 1000),
-    title: "Pick up milk.",
-    completed: false
-  },
-  {
-    id: Math.floor(Math.random() * 1000),
-    title: "Pick up egg.",
-    completed: false
-  },
-  {
-    id: Math.floor(Math.random() * 1000),
-    title: "Pick up bread.",
-    completed: false
-  },
-  {
-    id: Math.floor(Math.random() * 1000),
-    title: "Pick up juice.",
-    completed: false
-  },
-  {
-    id: Math.floor(Math.random() * 1000),
-    title: "Pick up oil.",
-    completed: false
-  }
-];
-
 // Root Route
 app.get("/", function(req, res) {
   res.render("index", {
@@ -61,43 +33,15 @@ app.get("/", function(req, res) {
 });
 
 // List To-Do's
-app.get("/todos", function(req, res) {
-  res.render("todos", {
-    todos: todos
-  });
-});
+app.get("/todos", todoController.getTodos);
 
-app.post("/todos", function(req, res) {
-  const todo = {
-    id: Math.floor(Math.random() * 1000),
-    title: req.body.title,
-    completed: false
-  };
-  todos.push(todo);
-  res.redirect("todos");
-});
+// Create To-Do's
+app.post("/todos", todoController.postTodos);
 
-app.delete("/todos/:id", function(req, res) {
-  let id = req.params.id;
-  todos = todos.filter(function(todo){
-    return todo.id != id;
-  });
-  res.redirect('/todos');
-});
+// Delete To-Do's
+app.delete("/todos/:id", todoController.deleteTodo);
 
-app.put("/todos/:id", function(req, res) {
-  let id = req.params.id;
-  console.log(req.body);
-  let updatedValue = req.body.checkboxValue;
-  console.log(updatedValue);
-  todos.forEach(function(todo) {
-    if (todo.id == id && updatedValue) {
-      todo.completed = true;
-    } else if (todo.id == id && !updatedValue) {
-      todo.completed = false;
-    }
-  });
-  res.redirect("/todos");
-});
+// Update a specific To-Do
+app.put("/todos/:id", todoController.putTodo);
 
 app.listen(3000);
