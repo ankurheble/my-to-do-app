@@ -1,6 +1,5 @@
 .todo-item {
     display: flex;
-    margin-top: 10px;
 }
 
 .todo-item > li {
@@ -10,4 +9,8 @@
 .todo-item > input {
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.flex{
+    display: flex;
 }
