@@ -1,5 +1,15 @@
 let todos = require("../model/todos");
 
+/*
+    Standard Methods for CRUD applications
+    Get /todos : index
+    Get /todos/create : create
+    Post /todos : store
+    Get /todos/:id/edit : edit
+    Put /todos/:id : update
+    Delete /todos/:id : delete
+*/
+
 module.exports = {
   getTodos: function(req, res) {
     res.render("todos", {
