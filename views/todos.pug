@@ -18,13 +18,14 @@ html(lang="en")
 
 			ul(class="list-group")
 				each todo in todos
-					form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
-						input(type="hidden" name="_method" value="PUT")
-						span(class="todo-item")
-							li(class="list-group-item")=todo.title
-							input(type="checkbox" name="checkboxValue" checked=todo.completed)
-							button(type="submit" class="btn btn-primary btn-sm") Update
-					form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
-						input(type="hidden" name="_method" value="DELETE")
-						button(type="submit" class="btn btn-danger btn-sm") Delete
+					span(class="flex")
+						form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
+							input(type="hidden" name="_method" value="PUT")
+							span(class="todo-item")
+								li(class="list-group-item")=todo.title
+								input(type="checkbox" name="checkboxValue" checked=todo.completed)
+								button(type="submit" class="btn btn-primary btn-sm") Update
+						form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
+							input(type="hidden" name="_method" value="DELETE")
+							button(type="submit" class="btn btn-danger btn-sm") Delete
 					

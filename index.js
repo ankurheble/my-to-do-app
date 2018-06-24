@@ -3,6 +3,9 @@ let express = require("express");
 let path = require("path");
 let methodOverride = require("method-override");
 let todoRouter = require("./routes/todos");
+let mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost:27017/todos-db");
 
 // App initiation
 let app = express();
