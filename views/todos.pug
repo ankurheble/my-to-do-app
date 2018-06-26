@@ -12,13 +12,13 @@ html(lang="en")
 				)
 	body
 		div(class="container")
-			span(class="flex")
-				form(action="/todos",method="POST")
-					input(type="text" name="title" class="form-control")
-					button(type="submit" class="btn btn-primary btn-sm") Add To-Do
+			form(action="/todos",method="POST")
+				input(type="text" name="title" class="form-control")
+				button(type="submit" class="btn btn-primary btn-sm") Add To-Do
 
-				ul(class="list-group")
-					each todo in todos
+			ul(class="list-group")
+				each todo in todos
+					span(class="flex")
 						form(action="/todos/"+todo.id, method="POST", enctype="application/x-www-form-urlencoded")
 							input(type="hidden" name="_method" value="PUT")
 							span(class="todo-item")
